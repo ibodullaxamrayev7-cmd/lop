@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Savolli Test Platformasi</title>
+    <style>
+        :root {
+            --primary: #8A2BE2;
+            --secondary: #4B0082;
+            --accent: #FF6B6B;
+            --light: #F8F7FF;
+            --dark: #2D3047;
+            --success: #2ECC71;
+            --warning: #F39C12;
+            --danger: #E74C3C;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: var(--light);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            width: 100%;
+            max-width: 900px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 15px;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .description {
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+        
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .active {
+            display: block;
+        }
+        
+        .welcome-screen {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .welcome-screen h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .welcome-screen p {
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-size: 1.1rem;
+        }
+        
+        .features {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .feature {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 180px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .feature-text {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .btn {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(138, 43, 226, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .question-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .question-number {
+            font-size: 1.2rem;
+            color: var(--primary);
+            font-weight: 600;
+            background: rgba(138, 43, 226, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .timer {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .question-text {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            line-height: 1.5;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .options-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .option {
+            padding: 18px;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            background: white;
+        }
+        
+        .option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .option.selected {
+            border-color: var(--primary);
+            background: rgba(138, 43, 226, 0.05);
+        }
+        
+        .option.correct {
+            border-color: var(--success);
+            background: rgba(46, 204, 113, 0.1);
+        }
+        
+        .option.incorrect {
+            border-color: var(--danger);
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        .option-letter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #F0F0F0;
+            margin-right: 15px;
+            font-weight: bold;
+            color: var(--dark);
+            flex-shrink: 0;
+        }
+        
+        .selected .option-letter {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .correct .option-letter {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .incorrect .option-letter {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .progress-container {
+            margin-bottom: 25px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: #E0E0E0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+        
+        .result-screen {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .result-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .score {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .score-text {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+        }
+        
+        .result-message {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--dark);
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .answers-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .summary-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .summary-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .summary-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+        
+        .correct-answers {
+            text-align: left;
+            margin-top: 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .correct-answers h3 {
+            margin-bottom: 20px;
+            color: var(--dark);
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #F0F0F0;
+        }
+        
+        .answer-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #F0F0F0;
+        }
+        
+        .answer-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .answer-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .correct-answer {
+            color: var(--success);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .user-answer {
+            color: var(--danger);
+            font-weight: 600;
+        }
+        
+        .user-answer.correct {
+            color: var(--success);
+        }
+        
+        .question-nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .question-nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F0F0F0;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .question-nav-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .question-nav-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .question-nav-btn.answered {
+            background: var(--success);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .options-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .answers-summary {
+                grid-template-columns: 1fr;
+            }
+            
+            .navigation {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .features {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .feature {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+        
+        /* Animatsiyalar */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Scrollbar */
+        .correct-answers::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .correct-answers::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        .correct-answers::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        .correct-answers::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>30 Savolli Test Platformasi</h1>
+        <p class="description">Bilimingizni sinab ko'ring va natijalaringizni bilib oling</p>
+        
+        <!-- Boshlash ekrani -->
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-screen">
+                <h2>Testga Xush Kelibsiz!</h2>
+                <p>Bu testda sizning bilimingizni 30 ta savol orqali sinab ko'ramiz. Har bir savolga javob berish uchun vaqt cheklanmagan.</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">📝</div>
+                        <div class="feature-text">30 ta Savol</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⏱️</div>
+                        <div class="feature-text">Vaqt Cheklanmagan</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📊</div>
+                        <div class="feature-text">Batafsil Natijalar</div>
+                    </div>
+                </div>
+                
+                <button id="start-btn" class="btn">Testni Boshlash</button>
+            </div>
+        </div>
+        
+        <!-- Test ekrani -->
+        <div id="test-screen" class="screen">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span id="progress-text">Savol 1/30</span>
+                    <span id="timer">00:00</span>
+                </div>
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-text" id="question-text">Savol matni bu yerda ko'rsatiladi</div>
+                
+                <div id="options-container" class="options-container">
+                    <!-- Variantlar JavaScript orqali qo'shiladi -->
+                </div>
+            </div>
+            
+            <div class="question-nav" id="question-nav">
+                <!-- Savol navigatsiyasi JavaScript orqali qo'shiladi -->
+            </div>
+            
+            <div class="navigation">
+                <button id="prev-btn" class="btn btn-outline">Oldingi</button>
+                <button id="next-btn" class="btn">Keyingi</button>
+                <button id="submit-btn" class="btn">Yakunlash</button>
+            </div>
+        </div>
+        
+        <!-- Natija ekrani -->
+        <div id="result-screen" class="screen">
+            <div class="result-screen">
+                <div class="result-icon">🎓</div>
+                <div id="score" class="score">0/30</div>
+                <div id="score-text" class="score-text">Sizning natijangiz</div>
+                
+                <div id="result-message" class="result-message">
+                    Siz testni muvaffaqiyatli yakunladingiz!
+                </div>
+                
+                <div class="answers-summary">
+                    <div class="summary-item">
+                        <div id="correct-answers" class="summary-value">0</div>
+                        <div class="summary-label">To'g'ri Javoblar</div>
+                    </div>
+                    <div class="summary-item">
+                        <div id="incorrect-answers" class="summary-value">0</div>
+                        <div class="summary-label">Noto'g'ri Javoblar</div>
+                    </div>
+                    <div class="summary-item">
+                        <div id="percentage" class="summary-value">0%</div>
+                        <div class="summary-label">Foiz</div>
+                    </div>
+                </div>
+                
+                <button id="restart-btn" class="btn">Qaytadan Boshlash</button>
+                
+                <div class="correct-answers">
+                    <h3>Batafsil Natijalar</h3>
+                    <div id="answers-list">
+                        <!-- To'g'ri javoblar JavaScript orqali qo'shiladi -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JSON formatidagi 30 ta savol
+        const questions = [
+            {
+                id: 1,
+                question: "JavaScript qaysi yilda yaratilgan?",
+                options: ["1995", "1998", "2000", "2005"],
+                correctAnswer: 0
+            },
+            {
+                id: 2,
+                question: "Quyidagilar qaysi biri CSS framework hisoblanadi?",
+                options: ["React", "Bootstrap", "Node.js", "Express"],
+                correctAnswer: 1
+            },
+            {
+                id: 3,
+                question: "HTML qaysi so'zlar qisqartmasi?",
+                options: [
+                    "HyperText Markup Language",
+                    "HighTech Modern Language",
+                    "HyperTransfer Markup Language",
+                    "Home Tool Markup Language"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 4,
+                question: "Quyidagi dasturlash tillaridan qaysi biri frontend dasturlash uchun ishlatiladi?",
+                options: ["Python", "Java", "PHP", "JavaScript"],
+                correctAnswer: 3
+            },
+            {
+                id: 5,
+                question: "CSS nimaning qisqartmasi?",
+                options: [
+                    "Computer Style Sheets",
+                    "Creative Style System",
+                    "Cascading Style Sheets",
+                    "Colorful Style Sheets"
+                ],
+                correctAnswer: 2
+            },
+            {
+                id: 6,
+                question: "Quyidagi teglardan qaysi biri HTML5 da yangi kiritilgan?",
+                options: ["<div>", "<span>", "<section>", "<p>"],
+                correctAnswer: 2
+            },
+            {
+                id: 7,
+                question: "JavaScript qanday turdagi til hisoblanadi?",
+                options: ["Kompilyatsiya qilinadigan", "Interpreter til", "Assembly til", "Ma'lumotlar bazasi tili"],
+                correctAnswer: 1
+            },
+            {
+                id: 8,
+                question: "Quyidagilar qaysi biri JavaScript frameworki hisoblanadi?",
+                options: ["Django", "Laravel", "React", "Flask"],
+                correctAnswer: 2
+            },
+            {
+                id: 9,
+                question: "CSS da element markaziga joylashtirish uchun qaysi xossadan foydalaniladi?",
+                options: ["align-content", "justify-content", "margin-auto", "text-align"],
+                correctAnswer: 1
+            },
+            {
+                id: 10,
+                question: "Quyidagi metodlardan qaysi biri massivga yangi element qo'shadi?",
+                options: ["push()", "pop()", "shift()", "unshift()"],
+                correctAnswer: 0
+            },
+            {
+                id: 11,
+                question: "Responsive dizayn nima?",
+                options: [
+                    "Har xil qurilmalarga moslashuvchi dizayn",
+                    "Ranglar bilan ishlash",
+                    "Tez ishlaydigan veb-sayt",
+                    "Animatsiyalar bilan ishlash"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 12,
+                question: "Git nima?",
+                options: [
+                    "Dasturlash tili",
+                    "Version control system",
+                    "Operatsion sistema",
+                    "Ma'lumotlar bazasi"
+                ],
+                correctAnswer: 1
+            },
+            {
+                id: 13,
+                question: "HTTP so'roq turlari qaysi javobda to'g'ri keltirilgan?",
+                options: [
+                    "GET, POST, PUT, DELETE",
+                    "READ, WRITE, UPDATE, REMOVE",
+                    "CREATE, READ, UPDATE, DELETE",
+                    "SEND, RECEIVE, MODIFY, ERASE"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 14,
+                question: "Quyidagi tillardan qaysi biri backend dasturlash uchun ishlatiladi?",
+                options: ["HTML", "CSS", "JavaScript", "Python"],
+                correctAnswer: 3
+            },
+            {
+                id: 15,
+                question: "API nimaning qisqartmasi?",
+                options: [
+                    "Application Programming Interface",
+                    "Advanced Programming Instruction",
+                    "Automated Program Integration",
+                    "Application Process Integration"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 16,
+                question: "JSON nimaning qisqartmasi?",
+                options: [
+                    "JavaScript Object Notation",
+                    "Java Standard Object Naming",
+                    "JavaScript Oriented Notation",
+                    "Java System Object Network"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 17,
+                question: "Quyidagi CSS xossalaridan qaysi biri elementlar orasidagi masofani boshqaradi?",
+                options: ["padding", "margin", "border", "outline"],
+                correctAnswer: 1
+            },
+            {
+                id: 18,
+                question: "JavaScriptda '===' operatori nima uchun ishlatiladi?",
+                options: [
+                    "Qiymat va turini solishtirish",
+                    "Faqat qiymatni solishtirish",
+                    "O'zlashtirish amali",
+                    "Matnlarni birlashtirish"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 19,
+                question: "DOM nimaning qisqartmasi?",
+                options: [
+                    "Document Object Model",
+                    "Data Object Management",
+                    "Digital Output Module",
+                    "Display Object Method"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 20,
+                question: "Quyidagi metodlardan qaysi biri JavaScriptda massivni aylantiradi?",
+                options: ["reverse()", "sort()", "filter()", "map()"],
+                correctAnswer: 0
+            },
+            {
+                id: 21,
+                question: "CSS Grid va Flexbox o'rtasidagi asosiy farq nima?",
+                options: [
+                    "Grid ikki o'lchovli, Flexbox bir o'lchovli",
+                    "Grid bir o'lchovli, Flexbox ikki o'lchovli",
+                    "Grid faqat matnlar uchun, Flexbox rasmlar uchun",
+                    "Grid faqat mobil qurilmalar uchun"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 22,
+                question: "Quyidagi tillardan qaysi biri statik tipizatsiyalangan til hisoblanadi?",
+                options: ["JavaScript", "Python", "TypeScript", "PHP"],
+                correctAnswer: 2
+            },
+            {
+                id: 23,
+                question: "Node.js nima?",
+                options: [
+                    "JavaScript runtime environment",
+                    "JavaScript kutubxonasi",
+                    "JavaScript frameworki",
+                    "JavaScript sintaksisi"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 24,
+                question: "SQL nimaning qisqartmasi?",
+                options: [
+                    "Structured Query Language",
+                    "System Query Logic",
+                    "Standard Question Language",
+                    "Structured Question Logic"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 25,
+                question: "Quyidagi metodlardan qaysi biri JavaScriptda funksiyani kechiktirib ishlatish uchun ishlatiladi?",
+                options: ["setTimeout()", "setInterval()", "wait()", "delay()"],
+                correctAnswer: 0
+            },
+            {
+                id: 26,
+                question: "REST API nima?",
+                options: [
+                    "Representational State Transfer",
+                    "Remote System Transfer",
+                    "Resource State Transfer",
+                    "Representational System Transfer"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 27,
+                question: "Quyidagi tillardan qaysi biri kompilyatsiya qilinadi?",
+                options: ["Python", "JavaScript", "C++", "PHP"],
+                correctAnswer: 2
+            },
+            {
+                id: 28,
+                question: "CSS da !important qanday vazifa bajaradi?",
+                options: [
+                    "Xossani eng yuqori ustuvorlikka ega qiladi",
+                    "Xossani bekor qiladi",
+                    "Xossani boshqa xossalardan keyin qo'llaydi",
+                    "Xossani faqat print uchun ishlatadi"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 29,
+                question: "JavaScriptda 'let' va 'var' o'rtasidagi farq nima?",
+                options: [
+                    "let block scope, var function scope",
+                    "let function scope, var block scope",
+                    "let global scope, var local scope",
+                    "Farqi yo'q"
+                ],
+                correctAnswer: 0
+            },
+            {
+                id: 30,
+                question: "Quyidagi atributlardan qaysi biri HTML5 da yangi kiritilgan?",
+                options: ["id", "class", "required", "style"],
+                correctAnswer: 2
+            }
+        ];
+
+        // DOM elementlari
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const testScreen = document.getElementById('test-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const startBtn = document.getElementById('start-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const questionText = document.getElementById('question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const progress = document.getElementById('progress');
+        const progressText = document.getElementById('progress-text');
+        const timerElement = document.getElementById('timer');
+        const scoreElement = document.getElementById('score');
+        const scoreTextElement = document.getElementById('score-text');
+        const resultMessage = document.getElementById('result-message');
+        const answersList = document.getElementById('answers-list');
+        const correctAnswersElement = document.getElementById('correct-answers');
+        const incorrectAnswersElement = document.getElementById('incorrect-answers');
+        const percentageElement = document.getElementById('percentage');
+        const questionNav = document.getElementById('question-nav');
+
+        // Test holati
+        let currentQuestion = 0;
+        let userAnswers = new Array(questions.length).fill(null);
+        let testCompleted = false;
+        let startTime;
+        let timerInterval;
+
+        // Testni boshlash
+        startBtn.addEventListener('click', startTest);
+
+        function startTest() {
+            welcomeScreen.classList.remove('active');
+            testScreen.classList.add('active');
+            startTime = new Date();
+            startTimer();
+            showQuestion(currentQuestion);
+            createQuestionNavigation();
+        }
+
+        // Vaqtni hisoblash
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                const currentTime = new Date();
+                const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+                const minutes = Math.floor(elapsedTime / 60);
+                const seconds = elapsedTime % 60;
+                timerElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }, 1000);
+        }
+
+        // Savol navigatsiyasini yaratish
+        function createQuestionNavigation() {
+            questionNav.innerHTML = '';
+            questions.forEach((_, index) => {
+                const navBtn = document.createElement('div');
+                navBtn.classList.add('question-nav-btn');
+                if (index === currentQuestion) {
+                    navBtn.classList.add('active');
+                }
+                if (userAnswers[index] !== null) {
+                    navBtn.classList.add('answered');
+                }
+                navBtn.textContent = index + 1;
+                navBtn.addEventListener('click', () => {
+                    currentQuestion = index;
+                    showQuestion(currentQuestion);
+                    updateQuestionNavigation();
+                });
+                questionNav.appendChild(navBtn);
+            });
+        }
+
+        // Savol navigatsiyasini yangilash
+        function updateQuestionNavigation() {
+            const navButtons = document.querySelectorAll('.question-nav-btn');
+            navButtons.forEach((btn, index) => {
+                btn.classList.remove('active');
+                if (index === currentQuestion) {
+                    btn.classList.add('active');
+                }
+                if (userAnswers[index] !== null) {
+                    btn.classList.add('answered');
+                } else {
+                    btn.classList.remove('answered');
+                }
+            });
+        }
+
+        // Savolni ko'rsatish
+        function showQuestion(index) {
+            const question = questions[index];
+            progressText.textContent = `Savol ${index + 1}/${questions.length}`;
+            questionText.textContent = question.question;
+            
+            // Progress barni yangilash
+            progress.style.width = `${((index + 1) / questions.length) * 100}%`;
+            
+            // Variantlarni tozalash
+            optionsContainer.innerHTML = '';
+            
+            // Variantlarni qo'shish
+            question.options.forEach((option, i) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                if (userAnswers[index] === i) {
+                    optionElement.classList.add('selected');
+                }
+                
+                optionElement.innerHTML = `
+                    <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+                    <span class="option-text">${option}</span>
+                `;
+                
+                optionElement.addEventListener('click', () => selectOption(i));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            // Tugmalarni yangilash
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === questions.length - 1;
+            submitBtn.style.display = index === questions.length - 1 ? 'block' : 'none';
+            
+            // Navigatsiyani yangilash
+            updateQuestionNavigation();
+        }
+
+        // Variantni tanlash
+        function selectOption(optionIndex) {
+            userAnswers[currentQuestion] = optionIndex;
+            showQuestion(currentQuestion);
+        }
+
+        // Oldingi savol
+        prevBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Keyingi savol
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Testni yakunlash
+        submitBtn.addEventListener('click', showResults);
+
+        function showResults() {
+            clearInterval(timerInterval);
+            testScreen.classList.remove('active');
+            resultScreen.classList.add('active');
+            
+            // Natijani hisoblash
+            let correctCount = 0;
+            questions.forEach((question, index) => {
+                if (userAnswers[index] === question.correctAnswer) {
+                    correctCount++;
+                }
+            });
+            
+            const percentage = Math.round((correctCount / questions.length) * 100);
+            
+            // Natijani ko'rsatish
+            scoreElement.textContent = `${correctCount}/${questions.length}`;
+            correctAnswersElement.textContent = correctCount;
+            incorrectAnswersElement.textContent = questions.length - correctCount;
+            percentageElement.textContent = `${percentage}%`;
+            
+            // Xabarni belgilash
+            if (percentage === 100) {
+                resultMessage.textContent = "Ajoyib! Barcha savollarga to'g'ri javob berdingiz! Siz a'lo darajada bilasiz!";
+                scoreElement.classList.add('pulse');
+            } else if (percentage >= 80) {
+                resultMessage.textContent = "Judayam yaxshi! Ko'pchilik savollarga to'g'ri javob berdingiz!";
+            } else if (percentage >= 60) {
+                resultMessage.textContent = "Yaxshi! Yana bir oz mashq qilsangiz, yaxshi natijaga erishasiz!";
+            } else if (percentage >= 40) {
+                resultMessage.textContent = "O'rtacha. Ma'lumotlaringizni mustahkamlang va yana urinib ko'ring!";
+            } else {
+                resultMessage.textContent = "Mavzuni qaytadan o'rganib chiqishingiz tavsiya etiladi!";
+            }
+            
+            // To'g'ri javoblarni ko'rsatish
+            answersList.innerHTML = '';
+            questions.forEach((question, index) => {
+                const answerItem = document.createElement('div');
+                answerItem.classList.add('answer-item');
+                
+                const userAnswerIndex = userAnswers[index];
+                const userAnswerText = userAnswerIndex !== null ? 
+                    question.options[userAnswerIndex] : "Javob berilmagan";
+                
+                const correctAnswerText = question.options[question.correctAnswer];
+                const isCorrect = userAnswerIndex === question.correctAnswer;
+                
+                answerItem.innerHTML = `
+                    <div class="answer-question">${index + 1}. ${question.question}</div>
+                    <div class="correct-answer">To'g'ri javob: ${correctAnswerText}</div>
+                    <div class="user-answer ${isCorrect ? 'correct' : ''}">Sizning javobingiz: ${userAnswerText}</div>
+                `;
+                
+                answersList.appendChild(answerItem);
+            });
+            
+            testCompleted = true;
+        }
+
+        // Testni qayta boshlash
+        restartBtn.addEventListener('click', restartTest);
+
+        function restartTest() {
+            currentQuestion = 0;
+            userAnswers = new Array(questions.length).fill(null);
+            testCompleted = false;
+            
+            clearInterval(timerInterval);
+            timerElement.textContent = "00:00";
+            
+            resultScreen.classList.remove('active');
+            welcomeScreen.classList.add('active');
+            
+            scoreElement.classList.remove('pulse');
+        }
+    </script>
+</body>
+</html>

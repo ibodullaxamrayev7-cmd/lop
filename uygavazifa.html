@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onlayn Test Platformasi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .option {
+      display: block;
+      background: #e8e8e8;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .option:hover {
+      background: #d6d6d6;
+    }
+
+    h1 {
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Onlayn Test</h1>
+    <div id="quiz-container">
+      <button id="start-btn">Testni Boshlash</button>
+    </div>
+    <div id="result" class="hidden"></div>
+  </div>
+
+  <script>
+    // JSON o‘rnida ichki savollar
+    const questions = [
+      {
+        question: "HTML nimani anglatadi?",
+        options: [
+          "Hyper Text Markup Language",
+          "High Text Machine Language",
+          "Home Tool Markup Language"
+        ],
+        answer: 0
+      },
+      {
+        question: "CSS nimani boshqaradi?",
+        options: [
+          "Matn ma’nosini",
+          "Veb sahifaning ko‘rinishini",
+          "Ma’lumotlar bazasini"
+        ],
+        answer: 1
+      },
+      {
+        question: "JavaScript nima uchun ishlatiladi?",
+        options: [
+          "Sahifani bezash uchun",
+          "Dinamik funksiyalar uchun",
+          "Ma’lumotlarni saqlash uchun"
+        ],
+        answer: 1
+      },
+      {
+        question: "CSS fayllar qaysi kengaytmada yoziladi?",
+        options: [".js", ".html", ".css"],
+        answer: 2
+      },
+      {
+        question: "JavaScriptda o‘zgaruvchi qanday e’lon qilinadi?",
+        options: ["let", "define", "set"],
+        answer: 0
+      }
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const quizContainer = document.getElementById("quiz-container");
+    const resultDiv = document.getElementById("result");
+    const startBtn = document.getElementById("start-btn");
+
+    startBtn.addEventListener("click", startQuiz);
+
+    function startQuiz() {
+      startBtn.style.display = "none";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      if (currentQuestion >= questions.length) {
+        showResult();
+        return;
+      }
+
+      const q = questions[currentQuestion];
+      quizContainer.innerHTML = 
+        <h3>${currentQuestion + 1}. ${q.question}</h3>
+        ${q.options
+          .map(
+            (opt, i) => 
+          <div class="option" onclick="checkAnswer(${i})">${opt}</div>
+        
+          )
+          .join("")}
+      ;
+    }
+
+    function checkAnswer(selected) {
+      const q = questions[currentQuestion];
+      if (selected === q.answer) score++;
+      currentQuestion++;
+      showQuestion();
+    }
+
+    function showResult() {
+      quizContainer.classList.add("hidden");
+      resultDiv.classList.remove("hidden");
+      resultDiv.innerHTML = 
+      function showResult() {
+  quizContainer.classList.add("hidden");
+  resultDiv.classList.remove("hidden");
+  resultDiv.innerHTML = 
+    <h2>Natija:</h2>
+    <p>Siz ${questions.length} ta savoldan ${score} tasiga to‘g‘ri javob berdingiz ✅</p>
+    <button onclick="restartQuiz()">Qayta boshlash</button>
+    }
+    }
+    function restartQuiz() {
+      currentQuestion = 0;
+      score = 0;
+      quizContainer.classList.remove("hidden");
+      resultDiv.classList.add("hidden");
+      showQuestion();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ibodulla Xamrayev | Portfolio</title>
+  <style>
+    /* ====== UMUMIY STIL ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      z-index: 100;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #00d9ff;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00d9ff;
+    }
+
+    /* ====== HERO BO‘LIM ====== */
+    section#hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    #hero h2 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    #hero h2 span {
+      color: #00d9ff;
+    }
+
+    #hero p {
+      font-size: 20px;
+      max-width: 600px;
+      color: #ccc;
+    }
+
+    #hero button {
+      margin-top: 30px;
+      padding: 12px 30px;
+      background: #00d9ff;
+      border: none;
+      border-radius: 30px;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #hero button:hover {
+      background: #00b4cc;
+      transform: scale(1.05);
+    }
+
+    /* ====== ABOUT ====== */
+    section#about {
+      padding: 100px 60px;
+      background: #13232e;
+      text-align: center;
+    }
+
+    #about h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #00d9ff;
+    }
+
+    #about p {
+      font-size: 18px;
+      max-width: 800px;
+      margin: auto;
+      color: #ccc;
+      line-height: 1.8;
+    }
+
+    /* ====== PROJECTS ====== */
+    section#projects {
+      padding: 100px 60px;
+      background: #0f2027;
+      text-align: center;
+    }
+
+    #projects h2 {
+      font-size: 36px;
+      margin-bottom: 50px;
+      color: #00d9ff;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .project {
+      background: #203a43;
+      border-radius: 15px;
+      padding: 25px;
+      transition: 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-8px);
+      background: #2c5364;
+    }
+
+    .project h3 {
+      margin-bottom: 10px;
+      color: #00d9ff;
+    }
+
+    .project p {
+      color: #ccc;
+      font-size: 15px;
+    }
+
+    /* ====== CONTACT ====== */
+    section#contact {
+      padding: 100px 60px;
+      background: #13232e;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #00d9ff;
+    }
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea {
+      padding: 12px 15px;
+      border: none;
+      border-radius: 10px;
+      background: #1e3c4a;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #999;
+    }
+
+    button.submit {
+      background: #00d9ff;
+      color: #000;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      padding: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button.submit:hover {
+      background: #00b4cc;
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #0f2027;
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header {
+        padding: 15px 20px;
+      }
+
+      #hero h2 {
+        font-size: 36px;
+      }
+
+      #about, #projects, #contact {
+        padding: 80px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ibodulla Xamrayev</h1>
+    <nav>
+      <a href="#hero">Bosh sahifa</a>
+      <a href="#about">Men haqimda</a>
+      <a href="#projects">Loyihalar</a>
+      <a href="#contact">Aloqa</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h2>Salom, men <span>Ibodulla</span> — Frontend Dasturchiman 🚀</h2>
+    <p>Men zamonaviy, tezkor va chiroyli veb-saytlar yaratishga ixtisoslashganman. Har bir loyiha — bu dizayn va texnologiyaning mukammal uyg‘unligi.</p>
+    <button onclick="scrollToAbout()">Ko‘proq bilish</button>
+  </section>
+
+  <section id="about">
+    <h2>Men haqimda</h2>
+    <p>
+      Men Frontend yo‘nalishida ishlaydigan yosh dasturchiman. HTML, CSS, JavaScript va React texnologiyalarida mustaqil loyihalar yaratganman. Maqsadim — har bir foydalanuvchi uchun nafli va vizual jihatdan jozibador platformalar qurish. 
+      Ishimda soddalik, tezlik va chiroy muhim o‘rin tutadi.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Mening loyihalarim</h2>
+    <div class="project-grid">
+      <div class="project">
+        <h3>Portfolio Vebsayt</h3>
+        <p>Shaxsiy portfolio loyiham — responsive, zamonaviy va minimalist dizaynga ega sayt.</p>
+      </div>
+      <div class="project">
+        <h3>Todo App</h3>
+        <p>Oddiy va qulay vazifalar ro‘yxatini boshqarish ilovasi (HTML, CSS, JS bilan).</p>
+      </div>
+      <div class="project">
+        <h3>Weather App</h3>
+        <p>API orqali ob-havo ma'lumotlarini ko‘rsatuvchi interaktiv veb-ilova.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Aloqa uchun</h2>
+    <form onsubmit="return sendMessage(event)">
+      <input type="text" id="name" placeholder="Ismingiz" required />
+      <input type="email" id="email" placeholder="Email manzilingiz" required />
+      <textarea id="message" rows="5" placeholder="Xabaringiz..." required></textarea>
+      <button class="submit" type="submit">Yuborish</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Ibodulla Xamrayev. Barcha huquqlar himoyalangan.
+  </footer>
+
+  <script>
+    // Scroll funksiyasi
+    function scrollToAbout() {
+      document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Form yuborish
+    function sendMessage(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      alert(`Rahmat, ${name}! Xabaringiz yuborildi.\nBiz tez orada siz bilan bog‘lanamiz.`);
+      event.target.reset();
+      return false;
+    }
+  </script>
+</body>
+</html>
